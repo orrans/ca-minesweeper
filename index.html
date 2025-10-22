@@ -3,14 +3,20 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="./css/style.css" />
         <title>Minesweeper</title>
     </head>
     <body onload="onInit()">
-        <table>
-            <tbody class="game-board">
+        <button onclick="onInit()">
+            <img class="smiley" src="./img/smiley-face.png" alt="smiley" />
+        </button>
 
-            </tbody>
+        <button onclick="changeDifficulty(4,4,2)">Beginner</button>
+        <button onclick="changeDifficulty(8,8,14)">Medium</button>
+        <button onclick="changeDifficulty(12,12,32)">Expert</button>
+
+        <table>
+            <tbody class="game-board"></tbody>
         </table>
         <footer>Or-Ran Bachar</footer>
 

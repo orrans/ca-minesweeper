@@ -3,12 +3,13 @@
 var gBoard
 const MINE = '<img src="./img/bomb.png" alt="mine">'
 const FLAG = '<img src="./img/flag.png" alt="flag">'
-const SMILEY = '<img src="./img/smiley-face.png" alt="flag">'
-const SAD_SMILEY = '<img src="./img/sad-face.png" alt="flag">'
-const COOL_SMILEY = '<img src="./img/cool-face.png" alt="flag">'
+const SMILEY = './img/smiley-face.png'
+const SAD_SMILEY = './img/dead-face.png'
+const COOL_SMILEY = './img/cool-face.png'
 
 var gLevel = {
-    SIZE: 4,
+    ROWS: 4,
+    COLLS: 4,
     MINES: 2,
 }
 
@@ -17,17 +18,34 @@ var gGame = {
     revealedCount: 0,
     markedCount: 0,
     secsPassed: 0,
+    lives: 3,
 }
 
 function onInit() {
+    var elSmiley = document.querySelector('.smiley')
+    elSmiley.src = SMILEY
     buildBoard()
-    console.table(gBoard)
+    renderBoard(gBoard)
+    console.log(`${gGame.lives} lives left`)
+    gGame = {
+        isOn: false,
+        revealedCount: 0,
+        markedCount: 0,
+        secsPassed: 0,
+        lives: 3,
+    }
+}
+
+function changeDifficulty(rows, colls, mines) {
+    gLevel.ROWS = rows
+    gLevel.COLLS = colls
+    gLevel.MINES = mines
+    buildBoard()
     renderBoard(gBoard)
 }
 
 function buildBoard() {
-    gBoard = createMat(gLevel.SIZE, gLevel.SIZE)
-    var minesPlaced = 0
+    gBoard = createMat(gLevel.ROWS, gLevel.COLLS)
     for (let i = 0; i < gBoard.length; i++) {
         for (let j = 0; j < gBoard[i].length; j++) {
             gBoard[i][j] = {
@@ -38,23 +56,24 @@ function buildBoard() {
             }
         }
     }
+}
 
-    // gBoard[0][0].isMine = true
-    // gBoard[3][3].isMine = true
+function addMines(board, excludeI, excludeJ) {
+    var minesPlaced = 0
     while (minesPlaced < gLevel.MINES) {
-        const i = getRandomNumInclusive(0, gBoard.length - 1)
-        const j = getRandomNumInclusive(0, gBoard[0].length - 1)
-        if (!gBoard[i][j].isMine) {
-            gBoard[i][j].isMine = true
+        const i = getRandomNumInclusive(0, board.length - 1)
+        const j = getRandomNumInclusive(0, board[0].length - 1)
+        if ((i === excludeI && j === excludeJ) || board[i][j].isMine) continue
+        if (!board[i][j].isMine) {
+            board[i][j].isMine = true
             minesPlaced++
         }
     }
 }
 
 function setMinesNegsCount(board) {
-    const boardSize = gLevel.SIZE
-    for (var i = 0; i < boardSize; i++) {
-        for (var j = 0; j < boardSize; j++) {
+    for (var i = 0; i < gLevel.ROWS; i++) {
+        for (var j = 0; j < gLevel.COLLS; j++) {
             if (board[i][j].isMine) {
                 countNeighborMines(i, j, board)
             }
@@ -64,20 +83,18 @@ function setMinesNegsCount(board) {
 
 function renderBoard(board) {
     var mineBoard = document.querySelector('.game-board')
-    setMinesNegsCount(gBoard)
-
     var strHTML = ''
 
-    var boardSize = gLevel.SIZE
-    for (let i = 0; i < boardSize; i++) {
+    for (let i = 0; i < gLevel.ROWS; i++) {
         strHTML += '<tr>\n'
-        for (let j = 0; j < boardSize; j++) {
+        for (let j = 0; j < gLevel.COLLS; j++) {
             const cell = board[i][j]
-            var classes = `cell cell-${i}-${j}"`
+            var classes = `cell cell-${i}-${j} `
+            if (cell.isShown) classes += 'shown'
             const content = cell.isMine ? MINE : cell.minesAroundCount || ``
             strHTML += `
 
-              <td class="${classes}" onclick="onCellClicked(this, ${i}, ${j})">
+              <td class="${classes}" oncontextmenu="onCellMarked(event, this, ${i}, ${j})" onclick="onCellClicked(this, ${i}, ${j})">
                   <span>${content}</span>
               </td>`
         }
@@ -86,15 +103,81 @@ function renderBoard(board) {
     mineBoard.innerHTML = strHTML
 }
 
-function onCellClicked(elCell, i, j) {
-    if (gGame.revealedCount === 0) {
+function renderCell(i, j) {
+    const cell = gBoard[i][j]
+    const elCell = document.querySelector(`.cell-${i}-${j}`)
+    const elSpan = elCell.querySelector('span')
+
+    const content = cell.isMine ? MINE : cell.minesAroundCount || ''
+    elSpan.innerHTML = content
+
+    if (cell.isShown) {
+        elCell.classList.add('shown')
+        elSpan.style.visibility = 'visible'
+    } else {
+        elCell.classList.remove('shown')
+        elSpan.style.visibility = 'hidden'
     }
-    elCell.classList.add('shown')
+
+    if (cell.isMarked) {
+        elSpan.innerHTML = FLAG
+        elSpan.style.visibility = 'visible'
+    }
 }
 
-function onCellMarked(elCell, i, j) {}
+function onCellClicked(elCell, i, j) {
+    const cell = gBoard[i][j]
+    const boardSize = gLevel.ROWS * gLevel.COLLS
 
-function checkGameOver() {}
+    if (cell.isShown || cell.isMarked) return
+
+    if (gGame.revealedCount === 0) {
+        addMines(gBoard, i, j)
+        setMinesNegsCount(gBoard)
+        gGame.isOn = true
+    }
+    if (!gGame.isOn) return
+
+    cell.isShown = true
+    renderCell(i, j)
+
+    if (cell.isMine) {
+        gGame.lives--
+        console.log(`${gGame.lives} lives left`)
+        if (!checkGameOver()) {
+            setTimeout(() => {
+                cell.isShown = false
+                renderCell(i, j)
+            }, 500)
+        }
+        return
+    }
+    gGame.revealedCount++
+    if (gGame.revealedCount === boardSize - gLevel.MINES) {
+        gGame.isOn = false
+        var elSmiley = document.querySelector('.smiley')
+        elSmiley.src = COOL_SMILEY
+    }
+}
+
+function onCellMarked(event, elCell, i, j) {
+    event.preventDefault()
+    const cell = gBoard[i][j]
+    if (cell.isShown) return
+
+    cell.isMarked = !cell.isMarked
+    renderCell(i, j)
+}
+
+function checkGameOver() {
+    var elSmiley = document.querySelector('.smiley')
+    if (gGame.lives === 0) {
+        elSmiley.src = SAD_SMILEY
+        gGame.isOn = false
+        return true
+    }
+    return false
+}
 
 function expandReveal(board, elCell, i, j) {}
 
