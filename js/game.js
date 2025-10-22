@@ -40,6 +40,7 @@ function changeDifficulty(rows, colls, mines) {
     gLevel.ROWS = rows
     gLevel.COLLS = colls
     gLevel.MINES = mines
+    onInit()
     buildBoard()
     renderBoard(gBoard)
 }
