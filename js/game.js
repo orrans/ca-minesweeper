@@ -32,13 +32,14 @@ function onInit() {
     var elSmiley = document.querySelector('.smiley')
     const elHints = document.querySelectorAll('.hint')
     var clicksRemained = document.querySelector('.safe-clicks-remains')
+    const elLives = document.querySelectorAll('.life')
+
     clicksRemained.innerText = gGame.safeClicks
     elSmiley.src = SMILEY
     isHintActivated = false
 
     buildBoard()
     renderBoard(gBoard)
-    console.log(`${gGame.lives} lives left`)
     gGame = {
         isOn: false,
         revealedCount: 0,
@@ -51,6 +52,10 @@ function onInit() {
         hint.classList.remove('used')
         hint.src = HINT
     })
+    elLives.forEach(life => {
+        life.classList.remove('lost')
+        life.src = LIFE
+    });
 }
 
 function changeDifficulty(rows, colls, mines) {
