@@ -1,6 +1,7 @@
-table, td {
-  border: 1px solid black;
-  border-collapse: collapse;
+table,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
 }
 
 .cell {
@@ -25,3 +26,12 @@ table, td {
 .cell.shown {
     background-color: #ddd;
 }
+
+.hint,
+.life {
+    height: 20px;
+}
+.hint:hover {
+    cursor: pointer;
+}
+

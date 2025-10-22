@@ -13,7 +13,19 @@
 
         <button onclick="changeDifficulty(4,4,2)">Beginner</button>
         <button onclick="changeDifficulty(8,8,14)">Medium</button>
-        <button onclick="changeDifficulty(12,12,32)">Expert</button>
+        <button onclick="changeDifficulty(12,12,2)">Expert</button>
+
+        <div>
+            <img class="hint" onclick="onHintClicked(this)" src="./img/hint.png" />
+            <img class="hint" onclick="onHintClicked(this)" src="./img/hint.png" />
+            <img class="hint" onclick="onHintClicked(this)" src="./img/hint.png" />
+        </div>
+        <div>
+            <img class="life" src="./img/life.png" />
+            <img class="life" src="./img/life.png" />
+            <img class="life" src="./img/life.png" />
+        </div>
+        <button class="safe-click" onclick="onSafeClicked()">Safe Clicks: <span class="safe-clicks-remains"></span></button>
 
         <table>
             <tbody class="game-board"></tbody>
