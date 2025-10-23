@@ -23,15 +23,23 @@ td {
     color: black;
 }
 
+.cell.marked span {
+    visibility: visible;
+}
+
 .cell.shown {
     background-color: #ddd;
 }
 
 .hint,
-.life {
+.life,.exterminator,.place-mines {
     height: 20px;
 }
-.hint:hover {
+img:hover {
     cursor: pointer;
 }
 
+.dark-mode {
+  background-color: black;
+  color: white;
+}

@@ -10,26 +10,59 @@
         <button onclick="onInit()">
             <img class="smiley" src="./img/smiley-face.png" alt="smiley" />
         </button>
+        <div class="flags-counter"></div>
+        <div class="timer">0</div>
+        <button onclick="changeDifficulty(4,4,2,'beginner')">Beginner</button>
+        <button onclick="changeDifficulty(8,8,12,'medium')">Medium</button>
+        <button onclick="changeDifficulty(12,12,32,'expert')">Expert</button>
+        <button onclick="changeDifficulty(null,null,null,'custom')">Custom</button>
 
-        <button onclick="changeDifficulty(4,4,2)">Beginner</button>
-        <button onclick="changeDifficulty(8,8,14)">Medium</button>
-        <button onclick="changeDifficulty(12,12,2)">Expert</button>
+        <button onclick="onUndoClicked()">&#8630;</button>
+        <img class="place-mines" onclick="onPlaceMinesClicked()" src="./img/mines-place.png" />
 
         <div>
             <img class="hint" onclick="onHintClicked(this)" src="./img/hint.png" />
             <img class="hint" onclick="onHintClicked(this)" src="./img/hint.png" />
             <img class="hint" onclick="onHintClicked(this)" src="./img/hint.png" />
+            <img class="hint mega" onclick="onHintClicked(this)" src="./img/mega-hint.png" />
         </div>
+
         <div>
             <img class="life" src="./img/life.png" />
             <img class="life" src="./img/life.png" />
             <img class="life" src="./img/life.png" />
         </div>
-        <button class="safe-click" onclick="onSafeClicked()">Safe Clicks: <span class="safe-clicks-remains"></span></button>
+        <img class="exterminator" onclick="onTerminateClicked()" src="./img/exterminator.png" />
+
+        <button class="safe-click" onclick="onSafeClicked()">
+            Safe Clicks:
+            <span class="safe-clicks-remains"></span>
+        </button>
 
         <table>
             <tbody class="game-board"></tbody>
         </table>
+
+        <div class="high-scores">
+            <h2>High Scores</h2>
+            <table class="scores-table">
+                <thead>
+                    <tr>
+                        <th>Expert</th>
+                        <th>Medium</th>
+                        <th>Beginner</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="expert"></td>
+                        <td class="medium"></td>
+                        <td class="beginner"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
         <footer>Or-Ran Bachar</footer>
 
         <script src="./js/utils.js"></script>
