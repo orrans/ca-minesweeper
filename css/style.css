@@ -1,146 +1,146 @@
 body {
-  background: #c0c0c0;
-  font-family: Tahoma, Verdana, sans-serif;
-  color: #000;
-  margin: 20px;
-  text-align: center;
+    background: #c0c0c0;
+    font-family: Tahoma, Verdana, sans-serif;
+    color: #000;
+    margin: 20px;
+    text-align: center;
 }
 
 button {
-  background: #c0c0c0;
-  border: 2px solid #fff;
-  border-right-color: #808080;
-  border-bottom-color: #808080;
-  padding: 4px 10px;
-  font-weight: bold;
-  cursor: pointer;
+    background: #c0c0c0;
+    border: 2px solid #fff;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+    padding: 4px 10px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 button:active,
 .clicked {
-  border: 2px solid #808080;
-  border-right-color: #fff;
-  border-bottom-color: #fff;
-  background: #bdbdbd;
+    border: 2px solid #808080;
+    border-right-color: #fff;
+    border-bottom-color: #fff;
+    background: #bdbdbd;
 }
 
 .timer,
 .flags-counter {
-  display: inline-block;
-  background: #000;
-  color: #e33;
-  font-family: "Courier New", monospace;
-  font-weight: bold;
-  font-size: 18px;
-  width: 60px;
-  padding: 4px;
-  margin: 0 5px;
-  border: 2px solid #fff;
-  border-right-color: #808080;
-  border-bottom-color: #808080;
+    display: inline-block;
+    background: #000;
+    color: #e33;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 18px;
+    width: 60px;
+    padding: 4px;
+    margin: 0 5px;
+    border: 2px solid #fff;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
 }
 
 table {
-  margin: 10px auto;
-  background: #bdbdbd;
-  border: 3px solid #fff;
-  border-right-color: #808080;
-  border-bottom-color: #808080;
-  border-collapse: collapse;
+    margin: 10px auto;
+    background: #bdbdbd;
+    border: 3px solid #fff;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+    border-collapse: collapse;
 }
 
 td {
-  width: 30px;
-  height: 30px;
-  background: #c0c0c0;
-  border-top: 2px solid #fff;
-  border-left: 2px solid #fff;
-  border-right: 2px solid #808080;
-  border-bottom: 2px solid #808080;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 18px;
+    width: 30px;
+    height: 30px;
+    background: #c0c0c0;
+    border-top: 2px solid #fff;
+    border-left: 2px solid #fff;
+    border-right: 2px solid #808080;
+    border-bottom: 2px solid #808080;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .shown {
-  background: #dcdcdc;
-  border: 1px solid #808080;
+    background: #dcdcdc;
+    border: 1px solid #808080;
 }
 
 td:hover:not(.shown) {
-  background: #d3d3d3;
+    background: #d3d3d3;
 }
 
 img {
-  height: 20px;
-  vertical-align: middle;
+    height: 20px;
+    vertical-align: middle;
 }
 
 .icon {
-  height: 24px;
-  margin: 2px;
+    height: 24px;
+    margin: 2px;
 }
 
 h1 {
-  color: #000;
-  font-size: 28px;
-  margin-bottom: 10px;
+    color: #000;
+    font-size: 28px;
+    margin-bottom: 10px;
 }
 
 footer {
-  margin-top: 10px;
-  font-size: 12px;
-  color: #333;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #333;
 }
 
 .high-scores {
-  margin: 20px auto;
-  padding: 8px 12px;
-  background: #bdbdbd;
-  border: 3px solid #fff;
-  border-right-color: #808080;
-  border-bottom-color: #808080;
-  width: 700px;            
-  text-align: center;
+    margin: 20px auto;
+    padding: 8px 12px;
+    background: #bdbdbd;
+    border: 3px solid #fff;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+    width: 700px;
+    text-align: center;
 }
 
 .high-scores h2 {
-  margin: 4px 0 8px 0;
-  font-size: 20px;
-  font-weight: bold;
-  color: #000;
+    margin: 4px 0 8px 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
 }
 
 .high-scores table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #c0c0c0;
-  margin: 0 auto;
+    width: 100%;
+    border-collapse: collapse;
+    background: #c0c0c0;
+    margin: 0 auto;
 }
 
 .high-scores th,
 .high-scores td {
-  border: 2px solid #808080;
-  border-right-color: #fff;
-  border-bottom-color: #fff;
-  padding: 4px;
-  font-size: 13px;      
-  text-align: center;   
-  color: #000;
+    border: 2px solid #808080;
+    border-right-color: #fff;
+    border-bottom-color: #fff;
+    padding: 4px;
+    font-size: 13px;
+    text-align: center;
+    color: #000;
 }
 
 .high-scores th {
-  background: #bdbdbd;
-  font-weight: bold;
+    background: #bdbdbd;
+    font-weight: bold;
 }
 
 .high-scores td {
-  background: #d0d0d0;
+    background: #d0d0d0;
 }
 
 .dark-mode {
-  background: #1c1c1c;
-  color: #eee;
+    background: #1c1c1c;
+    color: #eee;
 }

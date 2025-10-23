@@ -100,7 +100,6 @@ function onInit() {
     renderBoard(gBoard)
 }
 
-
 function onDarkToggleClicked() {
     var body = document.body
     body.classList.toggle('dark-mode')
@@ -134,8 +133,6 @@ function changeDifficulty(rows, colls, mines, difficulty, elBtn) {
 
     onInit()
 }
-
-
 
 function loseLife() {
     const elLives = document.querySelectorAll('.life')

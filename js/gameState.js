@@ -7,7 +7,6 @@ function onUndoClicked() {
     document.querySelector('.flags-counter').innerText = gGame.markedCount
 }
 
-
 function saveGameState() {
     const safeBoard = gBoard.map((row) =>
         row.map((cell) => ({

@@ -1,5 +1,3 @@
-// 📁 render.js
-
 function renderBoard(board) {
     var mineBoard = document.querySelector('.game-board')
     var strHTML = ''
