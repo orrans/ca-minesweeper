@@ -1,4 +1,5 @@
 function onHintClicked(elHint) {
+    if (!gGame.isOn) return
     if (elHint.classList.contains('used') || isHintActivated) return
     var isMega = elHint.classList.contains('mega')
     elHint.src = HINT_USED
@@ -69,6 +70,7 @@ function megaHintReveal(firstCorner, secondCorner) {
 }
 
 function onTerminateClicked() {
+    if (isPlacingMines || !gGame.isOn) return
     const elTerminate = document.querySelector('.exterminator')
     if (elTerminate.classList.contains('used')) return
     const mines = []
@@ -82,8 +84,8 @@ function onTerminateClicked() {
 
     if (mines.length === 0) return
 
-    const minesToRemove = Math.min(3, mines.length)
-
+    var minesToRemove = Math.min(3, mines.length)
+    if (minesToRemove <= 2) minesToRemove = Math.floor(minesToRemove / 2)
     for (let k = 0; k < minesToRemove; k++) {
         const randomIndex = getRandomNumInclusive(0, mines.length - 1)
         const mine = mines[randomIndex]
@@ -93,7 +95,9 @@ function onTerminateClicked() {
         mines.splice(randomIndex, 1)
     }
 
-    gLevel.MINES -= minesToRemove
+    gGame.markedCount -= minesToRemove
+    document.querySelector('.flags-counter').innerText = gGame.markedCount
+
     setMinesNegsCount(gBoard)
     renderBoard(gBoard)
 
@@ -102,18 +106,28 @@ function onTerminateClicked() {
 }
 
 function onPlaceMinesClicked() {
-    var elMinesRemained = document.querySelector('.mines-remained')
+    fullReset()
+
     isPlacingMines = true
-    elMinesRemained.innerText = gLevel.MINES
     minesToPlace = gLevel.MINES
-    buildBoard()
+
+    const elPlaceIcon = document.querySelector('.place-mines')
+    elPlaceIcon.classList.add('active')
+
+    const elMinesRemained = document.querySelector('.mines-remained')
+    elMinesRemained.innerText = minesToPlace
+
+    resetVisualState()
+    gGame.isOn = false
 }
 
 function onSafeClicked() {
     if (!gGame.isOn) return
     if (gGame.safeClicks <= 0) return
-    var isRevealed = false
+
     var clicksRemained = document.querySelector('.safe-clicks-remains')
+    var isRevealed = false
+
     while (!isRevealed) {
         var iRandom = getRandomNumInclusive(0, gLevel.ROWS - 1)
         var jRandom = getRandomNumInclusive(0, gLevel.COLLS - 1)
@@ -123,17 +137,23 @@ function onSafeClicked() {
 
         cell.isShown = true
         renderCell(iRandom, jRandom)
+
         const elCell = document.querySelector(`.cell-${iRandom}-${jRandom}`)
+        if (!elCell) return
+
         elCell.style.backgroundColor = '#8f8'
 
         setTimeout(() => {
-            elCell.style.backgroundColor = ''
+            const sameCell = document.querySelector(`.cell-${iRandom}-${jRandom}`)
+            if (!sameCell) return
+            sameCell.style.backgroundColor = ''
             cell.isShown = false
             renderCell(iRandom, jRandom)
         }, 1500)
 
         isRevealed = true
     }
+
     gGame.safeClicks--
     clicksRemained.innerText = gGame.safeClicks
 }

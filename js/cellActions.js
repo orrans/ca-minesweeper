@@ -103,8 +103,11 @@ function onCellClicked(elCell, i, j) {
                 cell.isShown = false
                 renderCell(i, j)
                 const elCell = document.querySelector(`.cell-${i}-${j}`)
-                if (!cell.isShown) elCell.innerHTML = '<span></span>'
+                if (elCell && !cell.isShown) elCell.innerHTML = '<span></span>'
             }, 1000)
+        } else {
+            revealAllMines(gBoard, i, j)
+            elCell.style.background = 'red'
         }
 
         return
@@ -112,7 +115,7 @@ function onCellClicked(elCell, i, j) {
 
     expandReveal(gBoard, i, j)
 
-    if (gGame.revealedCount === boardSize - gLevel.MINES) {
+    if (CheckWinCondition()) {
         gGame.isOn = false
         const elSmiley = document.querySelector('.smiley')
         elSmiley.src = COOL_SMILEY
@@ -124,17 +127,41 @@ function onCellClicked(elCell, i, j) {
 
 function onCellMarked(event, elCell, i, j) {
     event.preventDefault()
-    var elFlagsCounter = document.querySelector('.flags-counter')
-
     const cell = gBoard[i][j]
     if (cell.isShown) return
 
     saveGameState()
 
-    cell.isMarked = !cell.isMarked
-    renderCell(i, j)
-    gGame.markedCount = cell.isMarked ? gGame.markedCount - 1 : gGame.markedCount + 1
+    const elFlagsCounter = document.querySelector('.flags-counter')
+    const wasFlagged = cell.markState === 1
+
+    cell.markState = (cell.markState + 1) % 3
+
+    if (cell.markState === 1) {
+        elCell.innerHTML = FLAG
+        cell.isMarked = true
+        gGame.markedCount--
+        if (cell.isMine) gGame.correctMarkedMines++
+    } else {
+        cell.isMarked = false
+        elCell.innerHTML = cell.markState === 2 ? QUESTION_MARK : '<span></span>'
+
+        if (wasFlagged) {
+            gGame.markedCount++
+            if (cell.isMine) gGame.correctMarkedMines--
+        }
+    }
+
     elFlagsCounter.innerText = gGame.markedCount
+
+    if (CheckWinCondition()) {
+        gGame.isOn = false
+        const elSmiley = document.querySelector('.smiley')
+        elSmiley.src = COOL_SMILEY
+        stopTimer()
+        setHighScore()
+        renderHighScores()
+    }
 }
 
 function expandReveal(board, i, j) {
@@ -153,6 +180,19 @@ function expandReveal(board, i, j) {
             for (let col = j - 1; col <= j + 1; col++) {
                 expandReveal(board, row, col)
             }
+        }
+    }
+}
+
+function revealAllMines(board, iIdx, jIdx) {
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board[i].length; j++) {
+            const cell = board[i][j]
+            if (!cell.isMine) continue
+            if (i === iIdx && j === jIdx) continue
+
+            cell.isShown = true
+            renderCell(i, j)
         }
     }
 }

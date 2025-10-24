@@ -7,15 +7,17 @@ function renderBoard(board) {
         for (let j = 0; j < gLevel.COLLS; j++) {
             const cell = board[i][j]
             var classes = `cell cell-${i}-${j} `
-            if (cell.isShown) classes += 'shown'
-            if (cell.isMarked) classes += ' marked'
 
-            // let content = ''
-            // if (cell.isMarked) {
-            //     content = FLAG
-            // } else {
-            //     content = cell.isMine ? MINE : cell.minesAroundCount || ``
-            // }
+            if (cell.isShown) {
+                classes += 'shown '
+                if (!cell.isMine && cell.minesAroundCount > 0) {
+                    classes += `num-${cell.minesAroundCount} `
+                }
+            }
+
+            if (cell.isMarked) {
+                classes += 'marked '
+            }
 
             let content = ''
             if (cell.isMarked) {
@@ -37,27 +39,33 @@ function renderBoard(board) {
 }
 
 function renderCell(i, j) {
-    const cell = gBoard[i][j]
     const elCell = document.querySelector(`.cell-${i}-${j}`)
+    if (!elCell) return
+
+    const cell = gBoard[i][j]
     const elSpan = elCell.querySelector('span')
+    if (!elSpan) return
 
-    elCell.classList.remove('shown', 'marked', 'hint-selection')
-
-    if (cell.isShown) elCell.classList.add('shown')
-    if (cell.isMarked) elCell.classList.add('marked')
-
-    let content = ''
-    if (cell.isMarked) {
-        content = FLAG
-    } else if (cell.isShown && cell.isMine) {
-        content = MINE
-    } else if (cell.isShown && cell.minesAroundCount > 0) {
-        content = cell.minesAroundCount
-    } else {
-        content = ''
+    for (let k = 1; k <= 8; k++) {
+        elCell.classList.remove(`num-${k}`)
     }
 
-    elSpan.innerHTML = content
+    if (cell.isShown) {
+        elCell.classList.add('shown')
+        if (cell.isMine) {
+            elSpan.innerHTML = MINE
+        } else if (cell.minesAroundCount > 0) {
+            elSpan.innerHTML = cell.minesAroundCount
+            elCell.classList.add(`num-${cell.minesAroundCount}`)
+        } else {
+            elSpan.innerHTML = ''
+        }
+    } else {
+        elCell.classList.remove('shown')
+        if (!cell.isMarked) {
+            elSpan.innerHTML = ''
+        }
+    }
 }
 
 function renderHighScores() {

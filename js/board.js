@@ -7,6 +7,7 @@ function buildBoard() {
                 isShown: false,
                 isMine: false,
                 isMarked: false,
+                markState: 0,
             }
         }
     }

@@ -1,10 +1,24 @@
 function onUndoClicked() {
-    if (!gPrevGameState.board || !gPrevGameState.game) return
-
+    if (
+        !gPrevGameState.board ||
+        !gPrevGameState.game ||
+        gGame.lives < gPrevGameState.game.lives ||
+        !gGame.isOn
+    )
+        return
     gBoard = structuredClone(gPrevGameState.board)
     gGame = structuredClone(gPrevGameState.game)
     renderBoard(gBoard)
     document.querySelector('.flags-counter').innerText = gGame.markedCount
+
+    for (let i = 0; i < gBoard.length; i++) {
+        for (let j = 0; j < gBoard[0].length; j++) {
+            const cell = gBoard[i][j]
+            if (cell.isShown && !cell.isMine) {
+                renderCell(i, j, cell.minesAroundCount || '')
+            }
+        }
+    }
 }
 
 function saveGameState() {
@@ -14,6 +28,7 @@ function saveGameState() {
             isMarked: cell.isMarked,
             isShown: cell.isShown,
             minesAroundCount: cell.minesAroundCount,
+            markState: cell.markState,
         }))
     )
 

@@ -7,53 +7,71 @@
         <title>Minesweeper</title>
     </head>
     <body onload="onInit()">
-        <div>
-            <button onclick="onInit()">
-                <img class="smiley" onclick="onInit()" src="./img/smiley-face.png" alt="smiley" />
-            </button>
-        </div>
-        <div class="flags-counter"></div>
-        <div class="timer">0</div>
-        <div class="difficulty-container">
-            <button class="difficulty" onclick="changeDifficulty(4,4,2,'beginner', this)">
-                Beginner
-            </button>
-            <button class="difficulty" onclick="changeDifficulty(8,8,12,'medium', this)">
-                Medium
-            </button>
-            <button class="difficulty" onclick="changeDifficulty(12,12,30,'expert', this)">
-                Expert
-            </button>
-            <button class="difficulty" onclick="changeDifficulty(0,0,0,'custom', this)">
-                Custom
-            </button>
-        </div>
+        <div class="top-panel">
+            <div class="score-panel">
+                <div class="flags-counter">0</div>
+                <img src="./img/flag.png" alt="">
+                <button class="smiley-btn" onclick="onInit()">
+                    <img class="smiley" src="./img/smiley-face.png" alt="smiley" />
+                </button>
+                <img src="./img/stopwatch.png" alt="">
+                <div class="timer">0</div>
+            </div>
 
-        <button onclick="onUndoClicked()">&#8630;</button>
-        <div>
-            <img class="place-mines" onclick="onPlaceMinesClicked()" src="./img/mines-place.png" />
-            <span class="mines-remained"></span>
-        </div>
-        <div>
-            <img class="hint" onclick="onHintClicked(this)" src="./img/hint.png" />
-            <img class="hint" onclick="onHintClicked(this)" src="./img/hint.png" />
-            <img class="hint" onclick="onHintClicked(this)" src="./img/hint.png" />
-            <img class="hint mega" onclick="onHintClicked(this)" src="./img/mega-hint.png" />
-        </div>
+            <div class="difficulty-row">
+                <button class="difficulty" onclick="changeDifficulty(4,4,2,'beginner', this)">
+                    Beginner
+                </button>
+                <button class="difficulty" onclick="changeDifficulty(8,8,12,'medium', this)">
+                    Medium
+                </button>
+                <button class="difficulty" onclick="changeDifficulty(12,12,30,'expert', this)">
+                    Expert
+                </button>
+                <button class="difficulty" onclick="changeDifficulty(0,0,0,'custom', this)">
+                    Custom
+                </button>
+            </div>
 
-        <div>
-            <img class="life" src="./img/life.png" />
-            <img class="life" src="./img/life.png" />
-            <img class="life" src="./img/life.png" />
-        </div>
-        <div>
-            <img class="exterminator" onclick="onTerminateClicked()" src="./img/exterminator.png" />
-        </div>
+            <div class="icons-row">
+                <div class="hints">
+                    <img class="hint" onclick="onHintClicked(this)" src="./img/hint.png" />
+                    <img class="hint" onclick="onHintClicked(this)" src="./img/hint.png" />
+                    <img class="hint" onclick="onHintClicked(this)" src="./img/hint.png" />
+                    <img
+                        class="hint mega"
+                        onclick="onHintClicked(this)"
+                        src="./img/mega-hint.png" />
+                </div>
 
-        <button class="safe-click" onclick="onSafeClicked()">
-            Safe Clicks:
-            <span class="safe-clicks-remains"></span>
-        </button>
+                <div class="lives">
+                    <img class="life" src="./img/life.png" />
+                    <img class="life" src="./img/life.png" />
+                    <img class="life" src="./img/life.png" />
+                </div>
+
+                <div class="extras">
+                    <img
+                        class="exterminator"
+                        onclick="onTerminateClicked()"
+                        src="./img/exterminator.png" />
+
+                    <img
+                        class="place-mines"
+                        onclick="onPlaceMinesClicked()"
+                        src="./img/mines-place.png" />
+                    <span class="mines-remained"></span>
+                </div>
+            </div>
+
+            <div class="helpers">
+                <button class="safe-click" onclick="onSafeClicked()">
+                    Safe Clicks:
+                    <span class="safe-clicks-remains"></span>
+                </button>
+                <button class="undo" onclick="onUndoClicked()">&#8630;</button>
+            </div>
+        </div>
 
         <table>
             <tbody class="game-board"></tbody>
@@ -79,7 +97,7 @@
             </table>
         </div>
 
-        <button onclick="onDarkToggleClicked()">Dark mode</button>
+        <button onclick="onDarkToggleClicked()">Dark Mode</button>
 
         <footer>Or-Ran Bachar</footer>
 
