@@ -106,15 +106,22 @@ function onTerminateClicked() {
 }
 
 function onPlaceMinesClicked() {
-    fullReset()
+    const elMinesRemained = document.querySelector('.mines-remained')
+    const elPlaceIcon = document.querySelector('.place-mines')
 
+    if (isPlacingMines) {
+        isPlacingMines = false
+        elMinesRemained.innerText = ''
+        onInit()
+        return
+    }
+    fullReset()
     isPlacingMines = true
+
     minesToPlace = gLevel.MINES
 
-    const elPlaceIcon = document.querySelector('.place-mines')
     elPlaceIcon.classList.add('active')
 
-    const elMinesRemained = document.querySelector('.mines-remained')
     elMinesRemained.innerText = minesToPlace
 
     resetVisualState()

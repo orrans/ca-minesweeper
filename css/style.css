@@ -155,6 +155,11 @@ footer {
     background: #d0d0d0;
 }
 
+.mines-remained {
+    vertical-align: middle;
+    font-size: 16px;
+}
+
 .dark-mode {
     background: #1c1c1c;
 }
@@ -163,6 +168,7 @@ footer {
 .dark-mode .life,
 .dark-mode .hint,
 .dark-mode .place-mines,
+.dark-mode .mines-remained,
 .dark-mode .exterminator {
     filter: drop-shadow(0 0 1px white) drop-shadow(0 0 1px white) drop-shadow(0 0 1px white);
 }
