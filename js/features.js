@@ -148,7 +148,7 @@ function onSafeClicked() {
         const elCell = document.querySelector(`.cell-${iRandom}-${jRandom}`)
         if (!elCell) return
 
-        elCell.style.backgroundColor = '#8f8'
+        elCell.style.backgroundColor = '#a5c2f0'
 
         setTimeout(() => {
             const sameCell = document.querySelector(`.cell-${iRandom}-${jRandom}`)
