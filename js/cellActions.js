@@ -55,6 +55,7 @@ function onCellClicked(elCell, i, j) {
         if (!gMegaHintFirstCorner) {
             gMegaHintFirstCorner = { i, j }
             elCell.classList.add('hint-selection')
+            elCell.style.backgroundColor = '#a5c2f0'
             return
         } else {
             megaHintReveal(gMegaHintFirstCorner, { i, j })

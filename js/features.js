@@ -21,10 +21,27 @@ function hintReveal(iIdx, jIdx) {
             if (j < 0 || j >= gBoard[i].length) continue
 
             const cell = gBoard[i][j]
+            const elCell = document.querySelector(`.cell-${i}-${j}`)
+            if (!elCell) continue
+
             if (!cell.isShown) {
+                const originalContent = elCell.innerHTML
+
                 cell.isShown = true
-                renderCell(i, j)
-                revealedNow.push({ i, j })
+
+                let newContent = ''
+                if (cell.isMine) {
+                    newContent = MINE
+                } else if (cell.minesAroundCount > 0) {
+                    newContent = cell.minesAroundCount
+                    elCell.classList.add(`num-${cell.minesAroundCount}`)
+                }
+
+                elCell.innerHTML = `<span>${newContent}</span>`
+                elCell.classList.add('shown')
+                elCell.style.backgroundColor = '#a5c2f0'
+
+                revealedNow.push({ i, j, originalContent })
             }
         }
     }
@@ -33,7 +50,17 @@ function hintReveal(iIdx, jIdx) {
         for (const pos of revealedNow) {
             const cell = gBoard[pos.i][pos.j]
             cell.isShown = false
-            renderCell(pos.i, pos.j)
+
+            const elCell = document.querySelector(`.cell-${pos.i}-${pos.j}`)
+            if (elCell) {
+                elCell.style.backgroundColor = ''
+                elCell.innerHTML = pos.originalContent
+                elCell.classList.remove('shown')
+
+                for (var i = 1; i <= 8; i++) {
+                    elCell.classList.remove(`num-${i}`)
+                }
+            }
         }
     }, 1500)
 
@@ -51,11 +78,27 @@ function megaHintReveal(firstCorner, secondCorner) {
     for (let i = startRow; i <= endRow; i++) {
         for (let j = startCol; j <= endCol; j++) {
             const cell = gBoard[i][j]
+            const elCell = document.querySelector(`.cell-${i}-${j}`)
+            if (!elCell) continue
 
             if (!cell.isShown) {
+                const originalContent = elCell.innerHTML
+
                 cell.isShown = true
-                renderCell(i, j)
-                revealedCells.push({ i, j })
+
+                let newContent = ''
+                if (cell.isMine) {
+                    newContent = MINE
+                } else if (cell.minesAroundCount > 0) {
+                    newContent = cell.minesAroundCount
+                    elCell.classList.add(`num-${cell.minesAroundCount}`)
+                }
+
+                elCell.innerHTML = `<span>${newContent}</span>`
+                elCell.classList.add('shown')
+                elCell.style.backgroundColor = '#a5c2f0'
+
+                revealedCells.push({ i, j, originalContent })
             }
         }
     }
@@ -64,7 +107,17 @@ function megaHintReveal(firstCorner, secondCorner) {
         for (const pos of revealedCells) {
             const cell = gBoard[pos.i][pos.j]
             cell.isShown = false
-            renderCell(pos.i, pos.j)
+
+            const elCell = document.querySelector(`.cell-${pos.i}-${pos.j}`)
+            if (elCell) {
+                elCell.style.backgroundColor = ''
+                elCell.innerHTML = pos.originalContent
+                elCell.classList.remove('shown')
+
+                for (let i = 1; i <= 8; i++) {
+                    elCell.classList.remove(`num-${i}`)
+                }
+            }
         }
     }, 2000)
 }
