@@ -104,7 +104,7 @@ function onCellClicked(elCell, i, j) {
                 renderCell(i, j)
                 const elCell = document.querySelector(`.cell-${i}-${j}`)
                 if (elCell && !cell.isShown) elCell.innerHTML = '<span></span>'
-            }, 1000)
+            }, 400)
         } else {
             revealAllMines(gBoard, i, j)
             elCell.style.background = 'red'
