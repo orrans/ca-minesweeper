@@ -140,11 +140,13 @@ function onCellMarked(event, elCell, i, j) {
     if (cell.markState === 1) {
         elCell.innerHTML = FLAG
         cell.isMarked = true
+        elCell.classList.add('marked')
         gGame.markedCount--
         if (cell.isMine) gGame.correctMarkedMines++
     } else {
         cell.isMarked = false
         elCell.innerHTML = cell.markState === 2 ? QUESTION_MARK : '<span></span>'
+        elCell.classList.remove('marked')
 
         if (wasFlagged) {
             gGame.markedCount++

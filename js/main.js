@@ -275,11 +275,15 @@ function setupSmileyPressBehavior() {
 
         const cell = ev.target.closest('td')
         if (!cell) return
-        if (!gGame.isOn || cell.classList.contains('shown') || cell.classList.contains('marked')) {
+
+        if (!gGame.isOn || cell.classList.contains('shown')) {
             return
         }
 
         elSmiley.src = SMILEY_OPEN
+
+        if (cell.classList.contains('marked')) return
+
         cell.classList.add('active-cell')
     })
 
