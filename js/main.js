@@ -107,16 +107,26 @@ function onInit() {
     setupSmileyPressBehavior()
 }
 
+// function onDarkToggleClicked() {
+//     var body = document.body
+//     var elButton = document.querySelector('.dark-mode-btn')
+//     body.classList.toggle('dark-mode')
+//     isDarkMode = !isDarkMode
+//     if (isDarkMode) {
+//         elButton.innerText = 'Light Mode'
+//     } else {
+//         elButton.innerText = 'Dark Mode'
+//     }
+// }
+
+/* https://codepen.io/RefractedColor/pen/mdWZRPQ */
+//
 function onDarkToggleClicked() {
     var body = document.body
-    var elButton = document.querySelector('.dark-mode-btn')
     body.classList.toggle('dark-mode')
+    document.getElementsByClassName('moon')[0].classList.toggle('sun')
+    document.getElementsByClassName('dark-mode-btn')[0].classList.toggle('day')
     isDarkMode = !isDarkMode
-    if (isDarkMode) {
-        elButton.innerText = 'Light Mode'
-    } else {
-        elButton.innerText = 'Dark Mode'
-    }
 }
 
 function changeDifficulty(rows, colls, mines, difficulty, elBtn) {

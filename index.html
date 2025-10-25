@@ -7,14 +7,17 @@
         <title>Minesweeper</title>
     </head>
     <body onload="onInit()">
+        <button class="dark-mode-btn" onclick="onDarkToggleClicked()">
+            <div class="moon"></div>
+        </button>
         <div class="top-panel">
             <div class="score-panel">
                 <div class="flags-counter">0</div>
-                <img src="./img/flag.png" alt="flag">
+                <img src="./img/flag.png" alt="flag" />
                 <button class="smiley-btn" title="Restart the game" onclick="onInit()">
                     <img class="smiley" src="./img/smiley-face.png" alt="smiley" />
                 </button>
-                <img src="./img/stopwatch.png" alt="">
+                <img src="./img/stopwatch.png" alt="" />
                 <div class="timer">0</div>
             </div>
 
@@ -35,9 +38,21 @@
 
             <div class="icons-row">
                 <div class="hints">
-                    <img class="hint" title="See whats around the selected cell" onclick="onHintClicked(this)" src="./img/hint.png" />
-                    <img class="hint" title="See whats around the selected cell" onclick="onHintClicked(this)" src="./img/hint.png" />
-                    <img class="hint" title="See whats around the selected cell" onclick="onHintClicked(this)" src="./img/hint.png" />
+                    <img
+                        class="hint"
+                        title="See whats around the selected cell"
+                        onclick="onHintClicked(this)"
+                        src="./img/hint.png" />
+                    <img
+                        class="hint"
+                        title="See whats around the selected cell"
+                        onclick="onHintClicked(this)"
+                        src="./img/hint.png" />
+                    <img
+                        class="hint"
+                        title="See whats around the selected cell"
+                        onclick="onHintClicked(this)"
+                        src="./img/hint.png" />
                     <img
                         class="hint mega"
                         title="Select 2 cells and see whats in between"
@@ -68,11 +83,16 @@
             </div>
 
             <div class="helpers">
-                <button class="safe-click" title="Reveal 1 random safe cell" onclick="onSafeClicked()">
+                <button
+                    class="safe-click"
+                    title="Reveal 1 random safe cell"
+                    onclick="onSafeClicked()">
                     Safe Clicks:
                     <span class="safe-clicks-remains"></span>
                 </button>
-                <button class="undo" title="Undo one click" onclick="onUndoClicked()">&#8630;</button>
+                <button class="undo" title="Undo one click" onclick="onUndoClicked()">
+                    &#8630;
+                </button>
             </div>
         </div>
 
@@ -99,8 +119,6 @@
                 </tbody>
             </table>
         </div>
-
-        <button class="dark-mode-btn" onclick="onDarkToggleClicked()">Dark Mode</button>
 
         <footer>Or-Ran Bachar</footer>
 
