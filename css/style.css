@@ -176,7 +176,10 @@ footer {
 .dark-mode .place-mines,
 .dark-mode .mines-remained,
 .dark-mode .exterminator,
-.dark-mode footer {
+.dark-mode footer ,
+.dark-mode .stopwatch,
+.dark-mode .flag
+{
     filter: drop-shadow(0 0 1px white) drop-shadow(0 0 1px white) drop-shadow(0 0 1px white);
 }
 
