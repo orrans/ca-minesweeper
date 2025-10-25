@@ -291,6 +291,7 @@ footer {
         rgba(255, 255, 255, 0.1) 6em 2em 0 -4.1em, rgba(255, 255, 255, 0.1) 8em 8em 0 -4.5em,
         rgba(255, 255, 255, 0.1) 6em 13em 0 -4.5em, rgba(255, 255, 255, 0.1) -4em 7em 0 -4.5em,
         rgba(255, 255, 255, 0.1) -1em 10em 0 -4.5em;
+    image-rendering: pixelated;
 }
 .sun {
     top: 3.5em;
@@ -302,4 +303,5 @@ footer {
     box-shadow: 3em 3em 0 5em #fff inset, 0 -5em 0 -2.7em #fff, 3.5em -3.5em 0 -3em #fff,
         5em 0 0 -2.7em #fff, 3.5em 3.5em 0 -3em #fff, 0 5em 0 -2.7em #fff, -3.5em 3.5em 0 -3em #fff,
         -5em 0 0 -2.7em #fff, -3.5em -3.5em 0 -3em #fff;
+    image-rendering: pixelated;
 }
