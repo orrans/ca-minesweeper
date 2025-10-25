@@ -28,6 +28,12 @@ button {
     cursor: pointer;
 }
 
+.hint,
+.exterminator,
+.place-mines {
+    cursor: pointer;
+}
+
 button:active,
 .clicked {
     border: 2px solid #808080;
@@ -169,7 +175,8 @@ footer {
 .dark-mode .hint,
 .dark-mode .place-mines,
 .dark-mode .mines-remained,
-.dark-mode .exterminator {
+.dark-mode .exterminator,
+.dark-mode footer {
     filter: drop-shadow(0 0 1px white) drop-shadow(0 0 1px white) drop-shadow(0 0 1px white);
 }
 
@@ -208,8 +215,6 @@ footer {
     margin-bottom: 5px;
 }
 
-
-
 .smiley-btn {
     display: inline-block;
     vertical-align: middle;
@@ -228,7 +233,8 @@ footer {
     align-items: center;
 }
 
-.safe-click,.undo {
+.safe-click,
+.undo {
     margin-top: 10px;
     background: #c0c0c0;
     border: 2px solid #fff;
@@ -237,4 +243,3 @@ footer {
     font-weight: bold;
     padding: 6px 10px;
 }
-

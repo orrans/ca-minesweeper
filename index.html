@@ -10,8 +10,8 @@
         <div class="top-panel">
             <div class="score-panel">
                 <div class="flags-counter">0</div>
-                <img src="./img/flag.png" alt="">
-                <button class="smiley-btn" onclick="onInit()">
+                <img src="./img/flag.png" alt="flag">
+                <button class="smiley-btn" title="Restart the game" onclick="onInit()">
                     <img class="smiley" src="./img/smiley-face.png" alt="smiley" />
                 </button>
                 <img src="./img/stopwatch.png" alt="">
@@ -35,11 +35,12 @@
 
             <div class="icons-row">
                 <div class="hints">
-                    <img class="hint" onclick="onHintClicked(this)" src="./img/hint.png" />
-                    <img class="hint" onclick="onHintClicked(this)" src="./img/hint.png" />
-                    <img class="hint" onclick="onHintClicked(this)" src="./img/hint.png" />
+                    <img class="hint" title="See whats around the selected cell" onclick="onHintClicked(this)" src="./img/hint.png" />
+                    <img class="hint" title="See whats around the selected cell" onclick="onHintClicked(this)" src="./img/hint.png" />
+                    <img class="hint" title="See whats around the selected cell" onclick="onHintClicked(this)" src="./img/hint.png" />
                     <img
                         class="hint mega"
+                        title="Select 2 cells and see whats in between"
                         onclick="onHintClicked(this)"
                         src="./img/mega-hint.png" />
                 </div>
@@ -53,11 +54,13 @@
                 <div class="extras">
                     <img
                         class="exterminator"
+                        title="Delete 3 random mines"
                         onclick="onTerminateClicked()"
                         src="./img/exterminator.png" />
 
                     <img
                         class="place-mines"
+                        title="Manually place mines on the board"
                         onclick="onPlaceMinesClicked()"
                         src="./img/mines-place.png" />
                     <span class="mines-remained"></span>
@@ -65,11 +68,11 @@
             </div>
 
             <div class="helpers">
-                <button class="safe-click" onclick="onSafeClicked()">
+                <button class="safe-click" title="Reveal 1 random safe cell" onclick="onSafeClicked()">
                     Safe Clicks:
                     <span class="safe-clicks-remains"></span>
                 </button>
-                <button class="undo" onclick="onUndoClicked()">&#8630;</button>
+                <button class="undo" title="Undo one click" onclick="onUndoClicked()">&#8630;</button>
             </div>
         </div>
 
@@ -97,7 +100,7 @@
             </table>
         </div>
 
-        <button onclick="onDarkToggleClicked()">Dark Mode</button>
+        <button class="dark-mode-btn" onclick="onDarkToggleClicked()">Dark Mode</button>
 
         <footer>Or-Ran Bachar</footer>
 

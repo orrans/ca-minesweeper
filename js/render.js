@@ -82,7 +82,7 @@ function renderHighScores() {
 
         let html = '<ol>'
         scores.forEach((s) => {
-            html += `<li>${s.name}: ${Math.floor(s.time)}s</li>`
+            html += `<li>${s.name}: ${Math.floor(s.time)} <span style="font-size: 8px;">sec</span></li>`
         })
         html += '</ol>'
         el.innerHTML = html

@@ -255,7 +255,7 @@ function onTerminateClicked() {
 
     const minesToRemove = Math.min(3, mines.length)
 
-    for (let k = 0; k < minesToRemove; k++) {
+    for (let i = 0; i < minesToRemove; i++) {
         const randomIndex = getRandomNumInclusive(0, mines.length - 1)
         const mine = mines[randomIndex]
 

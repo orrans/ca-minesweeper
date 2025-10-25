@@ -57,7 +57,7 @@ function hintReveal(iIdx, jIdx) {
                 elCell.innerHTML = pos.originalContent
                 elCell.classList.remove('shown')
 
-                for (var i = 1; i <= 8; i++) {
+                for (let k = 1; k <= 8; k++) {
                     elCell.classList.remove(`num-${i}`)
                 }
             }

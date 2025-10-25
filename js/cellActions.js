@@ -1,6 +1,6 @@
 function onCellClicked(elCell, i, j) {
     const cell = gBoard[i][j]
-    const boardSize = gLevel.ROWS * gLevel.COLLS
+    // const boardSize = gLevel.ROWS * gLevel.COLLS
     var elMinesRemained = document.querySelector('.mines-remained')
 
     if (isPlacingMines) {
@@ -8,13 +8,12 @@ function onCellClicked(elCell, i, j) {
             cell.isMine = false
             cell.isShown = false
             minesToPlace++
-            elMinesRemained.innerText = minesToPlace
         } else {
             cell.isMine = true
             cell.isShown = true
             minesToPlace--
-            elMinesRemained.innerText = minesToPlace
         }
+        elMinesRemained.innerText = minesToPlace
 
         renderCell(i, j)
 
@@ -146,7 +145,8 @@ function onCellMarked(event, elCell, i, j) {
         if (cell.isMine) gGame.correctMarkedMines++
     } else {
         cell.isMarked = false
-        elCell.innerHTML = cell.markState === 2 ? QUESTION_MARK : '<span></span>'
+        elCell.innerHTML =
+            cell.markState === 2 ? `<span>${QUESTION_MARK}</span>` : '<span></span>'
         elCell.classList.remove('marked')
 
         if (wasFlagged) {

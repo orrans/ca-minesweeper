@@ -5,6 +5,7 @@ var gBoard
 var gPrevGameState = { board: null, game: null }
 var isPlacingMines = false
 var minesToPlace = 0
+var isDarkMode = false
 
 // consts
 const MINE = '<img src="./img/bomb.png" alt="mine">'
@@ -81,7 +82,7 @@ function onInit() {
         lives: 3,
         safeClicks: 3,
     }
-
+    gTime = 0
     elSmiley.src = SMILEY
     elTerminate.src = TERMINATOR
     elTimer.innerText = 0
@@ -108,7 +109,14 @@ function onInit() {
 
 function onDarkToggleClicked() {
     var body = document.body
+    var elButton = document.querySelector('.dark-mode-btn')
     body.classList.toggle('dark-mode')
+    isDarkMode = !isDarkMode
+    if (isDarkMode) {
+        elButton.innerText = 'Light Mode'
+    } else {
+        elButton.innerText = 'Dark Mode'
+    }
 }
 
 function changeDifficulty(rows, colls, mines, difficulty, elBtn) {
@@ -276,7 +284,7 @@ function setupSmileyPressBehavior() {
         const cell = ev.target.closest('td')
         if (!cell) return
 
-        if (!gGame.isOn || cell.classList.contains('shown')) {
+        if (!gGame.isOn) {
             return
         }
 
