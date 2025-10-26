@@ -219,7 +219,7 @@ function onSafeClicked() {
         sameCell.style.backgroundColor = ''
         cell.isShown = false
         renderCell(i, j)
-    }, 1500)
+    }, 600)
 
     gGame.safeClicks--
     clicksRemained.innerText = gGame.safeClicks

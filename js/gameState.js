@@ -6,8 +6,10 @@ function onUndoClicked() {
         !gGame.isOn
     )
         return
+    const currentSafeClicks = gGame.safeClicks
     gBoard = structuredClone(gPrevGameState.board)
     gGame = structuredClone(gPrevGameState.game)
+    gGame.safeClicks = currentSafeClicks
     renderBoard(gBoard)
     document.querySelector('.flags-counter').innerText = gGame.markedCount
 
