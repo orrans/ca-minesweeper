@@ -185,34 +185,41 @@ function onSafeClicked() {
     if (!gGame.isOn) return
     if (gGame.safeClicks <= 0) return
 
-    var clicksRemained = document.querySelector('.safe-clicks-remains')
-    var isRevealed = false
-
-    while (!isRevealed) {
-        var iRandom = getRandomNumInclusive(0, gLevel.ROWS - 1)
-        var jRandom = getRandomNumInclusive(0, gLevel.COLLS - 1)
-        var cell = gBoard[iRandom][jRandom]
-
-        if (cell.isMine || cell.isShown || cell.isMarked) continue
-
-        cell.isShown = true
-        renderCell(iRandom, jRandom)
-
-        const elCell = document.querySelector(`.cell-${iRandom}-${jRandom}`)
-        if (!elCell) return
-
-        elCell.style.backgroundColor = '#a5c2f0'
-
-        setTimeout(() => {
-            const sameCell = document.querySelector(`.cell-${iRandom}-${jRandom}`)
-            if (!sameCell) return
-            sameCell.style.backgroundColor = ''
-            cell.isShown = false
-            renderCell(iRandom, jRandom)
-        }, 1500)
-
-        isRevealed = true
+    const safeCells = []
+    for (let i = 0; i < gBoard.length; i++) {
+        for (let j = 0; j < gBoard[i].length; j++) {
+            const cell = gBoard[i][j]
+            if (!cell.isMine && !cell.isShown && !cell.isMarked) {
+                safeCells.push({ i, j })
+            }
+        }
     }
+
+    if (safeCells.length === 0) {
+        return
+    }
+
+    var clicksRemained = document.querySelector('.safe-clicks-remains')
+
+    const randomIdx = getRandomNumInclusive(0, safeCells.length - 1)
+    const { i, j } = safeCells[randomIdx]
+    const cell = gBoard[i][j]
+
+    cell.isShown = true
+    renderCell(i, j)
+
+    const elCell = document.querySelector(`.cell-${i}-${j}`)
+    if (!elCell) return
+
+    elCell.style.backgroundColor = '#a5c2f0'
+
+    setTimeout(() => {
+        const sameCell = document.querySelector(`.cell-${i}-${j}`)
+        if (!sameCell) return
+        sameCell.style.backgroundColor = ''
+        cell.isShown = false
+        renderCell(i, j)
+    }, 1500)
 
     gGame.safeClicks--
     clicksRemained.innerText = gGame.safeClicks
