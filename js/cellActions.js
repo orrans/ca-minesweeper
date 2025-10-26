@@ -134,19 +134,20 @@ function onCellMarked(event, elCell, i, j) {
 
     const elFlagsCounter = document.querySelector('.flags-counter')
     const wasFlagged = cell.markState === 1
+    const elSpan = elCell.querySelector('span')
+    if (!elSpan) return
 
     cell.markState = (cell.markState + 1) % 3
 
     if (cell.markState === 1) {
-        elCell.innerHTML = FLAG
+        elSpan.innerHTML = FLAG
         cell.isMarked = true
         elCell.classList.add('marked')
         gGame.markedCount--
         if (cell.isMine) gGame.correctMarkedMines++
     } else {
         cell.isMarked = false
-        elCell.innerHTML =
-            cell.markState === 2 ? `<span>${QUESTION_MARK}</span>` : '<span></span>'
+        elSpan.innerHTML = cell.markState === 2 ? QUESTION_MARK : ''
         elCell.classList.remove('marked')
 
         if (wasFlagged) {

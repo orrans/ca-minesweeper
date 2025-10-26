@@ -20,8 +20,10 @@ function renderBoard(board) {
             }
 
             let content = ''
-            if (cell.isMarked) {
+            if (cell.markState === 1) {
                 content = FLAG
+            } else if (cell.markState === 2) {
+                content = QUESTION_MARK
             } else if (cell.isShown && cell.isMine) {
                 content = MINE
             } else if (cell.isShown && cell.minesAroundCount > 0) {
@@ -82,7 +84,9 @@ function renderHighScores() {
 
         let html = '<ol>'
         scores.forEach((s) => {
-            html += `<li>${s.name}: ${Math.floor(s.time)} <span style="font-size: 8px;">sec</span></li>`
+            html += `<li>${s.name}: ${Math.floor(
+                s.time
+            )} <span style="font-size: 8px;">sec</span></li>`
         })
         html += '</ol>'
         el.innerHTML = html
