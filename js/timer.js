@@ -1,13 +1,16 @@
+let isRunning = false
+
 function startTimer() {
     var elTimer = document.querySelector('.timer')
     var startTime = Date.now()
     timerInterval = setInterval(() => {
         var deltaTime = Date.now()
-        var calculatedTime = Math.floor((deltaTime - startTime) / 1000 + 1)
+        var calculatedTime = Math.floor((deltaTime - startTime) / 1000) + 1
         elTimer.innerText = calculatedTime
         gTime = calculatedTime
-    })
+    }, 100)
 }
+
 function stopTimer() {
     clearInterval(timerInterval)
 }
