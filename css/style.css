@@ -3,30 +3,6 @@
     -webkit-user-drag: none;
 }
 
-.ad-banner {
-    margin: 20px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.ad-frame {
-    background: #bdbdbd;
-    border: 3px solid #fff;
-    border-right-color: #808080;
-    border-bottom-color: #808080;
-    padding: 4px;
-    width: fit-content;
-    box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080;
-}
-
-@media (max-width: 768px) {
-    .ad-frame ins {
-        width: 320px !important;
-        height: 100px !important;
-    }
-}
-
 @font-face {
     font-family: 'MineSweeper';
     src: url('../fonts/mine-sweeper.otf') format('opentype');
@@ -200,10 +176,9 @@ footer {
 .dark-mode .place-mines,
 .dark-mode .mines-remained,
 .dark-mode .exterminator,
-.dark-mode footer ,
+.dark-mode footer,
 .dark-mode .stopwatch,
-.dark-mode .flag
-{
+.dark-mode .flag {
     filter: drop-shadow(0 0 1px white) drop-shadow(0 0 1px white) drop-shadow(0 0 1px white);
 }
 
